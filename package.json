@@ -14,15 +14,19 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.2",
     "axios": "^0.26.0",
     "bootstrap": "^5.1.3",
     "dotenv": "^16.0.0",
+    "moment": "^2.29.1",
+    "postcss": "^8.4.7",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
     "react-bootstrap-table2-toolkit": "^2.1.3",
     "react-dom": "^17.0.2",
+    "react-moment": "^1.1.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
@@ -31,7 +35,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build:styles": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "start": "npm run build:styles && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -53,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
   }
 }

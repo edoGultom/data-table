@@ -1,43 +1,83 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { makeStyles } from '@material-ui/core/styles';
+import {Input, Typography, Button} from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import NativeSelect from '@mui/material/NativeSelect';
 
-const Header = ({ headers, onSorting }) => {
-    const [sortingField, setSortingField] = useState("");
-    const [sortingOrder, setSortingOrder] = useState("asc");
+const useStyles = makeStyles({
+    paper:{
+        marginTop: 20,
+        marginBottom: 20,
+        background: "red"
+    },
+});
 
-    const onSortingChange = (field) => {
-        const order =
-            field === sortingField && sortingOrder === "asc" ? "desc" : "asc";
-        setSortingField(field);
-        setSortingOrder(order);
-        onSorting(field, order);
-    };
 
+const Header = (props) => {
+    const classes = useStyles();
     return (
-        <thead>
-            <tr>
-                {headers.map(({ name, field, sortable }) => (
-                    <th
-                        key={name}
-                        onClick={() =>
-                            sortable ? onSortingChange(field) : null
-                        }
-                    >
-                        {name}
-
-                        {sortingField && sortingField === field && (
-                            <FontAwesomeIcon
-                                icon={
-                                    sortingOrder === "asc"
-                                        ? "arrow-down"
-                                        : "arrow-up"
-                                }
+     <div class="grid grid-cols-2">
+            <div class=" p-2 rounded">
+                <Paper >
+                    <Typography
+                        sx={{ flex: '1 1 100%' }}
+                        variant="h6"
+                        component="div"
+                        style={{margin: 5}}
+                    >Search
+                    </Typography>
+                    
+                    <div class="grid grid-cols-2">
+                        <div class="p-3 rounded bg-red">
+                            <Input
+                                placeholder="Please input search"
+                                className="flex flex-1"
+                                disableUnderline
+                                fullWidth
+                                value={props.keyword}
+                                inputProps={{
+                                    'aria-label': 'Search'
+                                }}
+                                onChange={ev => props.setKeyword(ev.target.value)}
                             />
-                        )}
-                    </th>
-                ))}
-            </tr>
-        </thead>
+                        </div>
+                        <div class="p-3 rounded bg-red">
+                            <Button onClick={() => props.searchFunction()} className="whitespace-no-wrap"   variant="contained">
+                                <span>Cari</span>
+                            </Button>
+                        </div>
+                    </div>
+                </Paper>
+            </div>
+            <div class="p-6 rounded">
+                <div class="p-2 rounded bg-red">
+                    {/* <FormControl style={{minWidth: 120}}> */}
+                        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                            Gender
+                        </InputLabel>
+                        <NativeSelect
+                            defaultValue={30}
+                            inputProps={{
+                            name: 'genre',
+                            id: 'uncontrolled-native',
+                            }}
+                            onChange={ev => props.setGender(ev.target.value)}
+                        >
+                            <option value="">All</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </NativeSelect>
+                    {/* </FormControl> */}
+                </div>
+                <div class="p-3 rounded bg-red">
+                        <Button onClick={() => props.setReset(true)} className="whitespace-no-wrap"   variant="contained">
+                            <span>Reset Filter</span>
+                        </Button>
+                </div>
+            </div>
+    </div>
     );
 };
 
