@@ -1,6 +1,10 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1.Clone Project
+2.file .env digunakan untuk keperluan REQUEST API KEY (lakukan perubahan disini jika perlu)
+3.npm install
+4.npm start
+
 
 ## Available Scripts
 
