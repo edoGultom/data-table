@@ -3,7 +3,7 @@
 1.Clone Project.\
 2.file .env digunakan untuk keperluan REQUEST API KEY (lakukan perubahan disini jika perlu).\
 3.npm install.\
-4.npm start.\
+4.npm start.
 
 
 uji coba bisa akses di https://react-js-ajaib-edo10395.vercel.app 
