@@ -18,8 +18,8 @@ const useStyles = makeStyles({
 const Header = (props) => {
     const classes = useStyles();
     return (
-     <div class="grid grid-cols-2">
-            <div class=" p-2 rounded">
+     <div className="grid grid-cols-2">
+            <div className=" p-2 rounded">
                 <Paper >
                     <Typography
                         sx={{ flex: '1 1 100%' }}
@@ -29,8 +29,8 @@ const Header = (props) => {
                     >Search
                     </Typography>
                     
-                    <div class="grid grid-cols-2">
-                        <div class="p-3 rounded bg-red">
+                    <div className="grid grid-cols-2">
+                        <div className="p-3 rounded bg-red">
                             <Input
                                 placeholder="Please input search"
                                 className="flex flex-1"
@@ -43,7 +43,7 @@ const Header = (props) => {
                                 onChange={ev => props.setKeyword(ev.target.value)}
                             />
                         </div>
-                        <div class="p-3 rounded bg-red">
+                        <div className="p-3 rounded bg-red">
                             <Button onClick={() => props.searchFunction()} className="whitespace-no-wrap"   variant="contained">
                                 <span>Cari</span>
                             </Button>
@@ -51,8 +51,8 @@ const Header = (props) => {
                     </div>
                 </Paper>
             </div>
-            <div class="p-6 rounded">
-                <div class="p-2 rounded bg-red">
+            <div className="p-6 rounded">
+                <div className="p-2 rounded bg-red">
                     {/* <FormControl style={{minWidth: 120}}> */}
                         <InputLabel variant="standard" htmlFor="uncontrolled-native">
                             Gender
@@ -63,6 +63,7 @@ const Header = (props) => {
                             name: 'genre',
                             id: 'uncontrolled-native',
                             }}
+                            value={props.gender}
                             onChange={ev => props.setGender(ev.target.value)}
                         >
                             <option value="">All</option>
@@ -71,8 +72,8 @@ const Header = (props) => {
                         </NativeSelect>
                     {/* </FormControl> */}
                 </div>
-                <div class="p-3 rounded bg-red">
-                        <Button onClick={() => props.setReset(true)} className="whitespace-no-wrap"   variant="contained">
+                <div className="p-3 rounded bg-red">
+                        <Button onClick={() => props.emptyFilter()} className="whitespace-no-wrap"   variant="contained">
                             <span>Reset Filter</span>
                         </Button>
                 </div>

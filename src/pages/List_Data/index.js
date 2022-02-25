@@ -26,12 +26,12 @@ const LisData = ()=> {
     const [order, setOrder] = useState('desc');
     const [selected, setSelected] = useState([]);
     const [dense, setDense] = useState(false);
-    const [page, setPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [keyword, setKeyword] = useState('')
-    const [gender, setGender] = useState('');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [keyword, setKeyword] = useState(null)
+    const [gender, setGender] = useState(null);
     const [reset, setReset] = useState(false);
-    const [halaman, setHalaman] = useState(0);
+    const [refresh, setRefresh] = useState(false);
     const [limit, setLimit] = useState(10);
 
 
@@ -39,22 +39,32 @@ const LisData = ()=> {
         dispatch(getData(page, limit, keyword));
     }
 
+    function emptyFilter(){
+        setKeyword('')
+        setGender('')
+        setRefresh(true)
+        // dispatch(getData(page, limit, keyword));
+    }
+    function esds(){
+        dispatch(getData(page, rowsPerPage, keyword, gender));
+    }
     useEffect(() => {
-        dispatch(getData(page, limit));
-    }, [dispatch, page, limit]);
+        esds()
+    }, [dispatch, page, rowsPerPage]);
     
     useEffect(() => {
-        if (gender.length > 0){
-            dispatch(getData(page, limit, gender));
+        if (gender){
+            esds()
         }
-    }, [dispatch,gender, page, limit]);
+    }, [dispatch,gender, page]);
 
-    // useEffect(() => {
-    //     if (reset){
-    //         setKeyword('')
-    //         setGender('')
-    //     }
-    // }, [dispatch,reset, page, limit]);
+    useEffect(() => {
+        if (refresh){
+            setPage(0)
+            setRowsPerPage(5)
+            dispatch(getData(0, 5));
+        }
+    }, [dispatch, refresh]);
 
     //MATERIAL
     const headCells = [
@@ -186,6 +196,8 @@ const LisData = ()=> {
         setPage(newPage);
     };
     const handleChangeRowsPerPage = (event) => {
+        console.log(JSON.stringify(event.target.value)+'event')
+
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -214,6 +226,7 @@ const LisData = ()=> {
                     gender={gender}
                     setGender={setGender}
                     setReset ={setReset}
+                    emptyFilter={emptyFilter}
                 />
                     <Table
                         sx={{ minWidth: 750, }}

@@ -2,7 +2,10 @@ import {GET_DATA_SUCCESS, GET_DATA_FAIL } from "./const"
 
 const initialValue = {
     data: [],
-    info: {},
+    info: {
+        halaman : ''
+    },
+    info_halaman: '',
     loading: false
 }
 export default function Reducer(state = initialValue, action){
@@ -13,7 +16,7 @@ export default function Reducer(state = initialValue, action){
             return{
                 ...state,
                 data: action.payload,
-                info: action.info_payload
+                info_halaman: action.info_payload
             }
         default:
             return state;
