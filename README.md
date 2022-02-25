@@ -6,6 +6,9 @@
 4.npm start
 
 
+uji coba bisa akses di https://react-js-ajaib-edo10395.vercel.app 
+
+
 ## Available Scripts
 
 In the project directory, you can run:
