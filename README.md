@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
 1.Clone Project.\
-2.file .env digunakan untuk keperluan REQUEST API KEY (lakukan perubahan disini jika perlu).\
+2.file .env digunakan untuk keperluan REQUEST API KEY.\
 3.npm install.\
 4.npm start.
 
